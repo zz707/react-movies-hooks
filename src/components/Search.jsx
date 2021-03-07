@@ -6,6 +6,16 @@ class Search extends React.Component {
         search: '',
     }
 
+    handleKey = (event) => {
+        if (event.key === 'Enter') {
+            this.applySearch();
+        }
+    }
+
+    applySearch = () => {
+        this.props.searchMovies(this.state.search);
+    }
+
     render() {
         return (
             <div className="row">
@@ -17,7 +27,14 @@ class Search extends React.Component {
                             type="search"
                             value={this.state.search}
                             onChange={(e) => this.setState({search: e.target.value})}
+                            onKeyDown={this.handleKey}
                         />
+                        <button
+                            className="btn search-btn"
+                            onClick={() => this.applySearch()}
+                        >
+                            Search
+                        </button>
                     </div>
 
             </div>
